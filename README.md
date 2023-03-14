@@ -38,8 +38,6 @@
 Для запуска необходимо установить Docker и Docker Compose.  
 Подробнее об установке на других платформах можно узнать на [официальном сайте](https://docs.docker.com/engine/install/).
 
-Подробнее об установке на других платформах можно узнать на [официальном сайте](https://docs.docker.com/engine/install/).
-
 Для начала необходимо скачать и выполнить официальный скрипт:
 ```bash
 apt install curl
@@ -151,7 +149,7 @@ docker-compose up -d
 
 После успешного запуска контейнеров выполнить миграции:
 ```bash
-docker-compose exec web python manage.py makemigrations reviews
+docker-compose exec web python manage.py makemigrations
 ```
 ```bash
 docker-compose exec web python manage.py migrate
