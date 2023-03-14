@@ -3,10 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-
-from ingredients.views import IngredientViewSet
-from recipes.views import RecipeViewSet
-from tags.views import TagViewSet
+from api.views import IngredientViewSet, RecipeViewSet, TagViewSet
 from users.views import CustomUserViewSet
 
 router_v1 = DefaultRouter()

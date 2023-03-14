@@ -25,9 +25,7 @@ INSTALLED_APPS = [
     'djoser',
     'sorl.thumbnail',
     'django_filters',
-    'ingredients',
     'recipes',
-    'tags',
     'users',
 ]
 

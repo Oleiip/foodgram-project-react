@@ -1,18 +1,19 @@
+from rest_framework import filters, viewsets, exceptions, status
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import exceptions, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
-from .filters import RecipeFilter
-from .models import Favorite, Recipe, RecipeIngredients, ShoppingCart
-from .permissions import IsAuthorOrAdminPermission
-from .serializers import (RecipeCreateUpdateSerializer, RecipeSerializer,
-                          ShortRecipeSerializer)
-from ingredients.models import Ingredient
+from api.filters import RecipeFilter
+from recipes.models import (Ingredient, Tag,
+                            Favorite, Recipe,
+                            RecipeIngredients, ShoppingCart)
+from api.permissions import IsAuthorOrAdminPermission
+from api.serializers import (RecipeCreateUpdateSerializer, RecipeSerializer,
+                             ShortRecipeSerializer,
+                             IngredientSerializer, TagSerializer)
 from users.pagination import CustomPageNumberPagination
 
 
@@ -138,3 +139,15 @@ class RecipeViewSet(viewsets.ModelViewSet):
         )
 
         return response
+
+
+class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Ingredient.objects.all()
+    serializer_class = IngredientSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('^name',)
+
+
+class TagViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
