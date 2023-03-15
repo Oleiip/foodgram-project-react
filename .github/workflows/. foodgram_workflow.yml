@@ -69,8 +69,9 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
             sudo docker pull oleiip/foodgram_backend
-            sudo docker-compose stop
-            sudo docker-compose rm backend
+            sudo docker pull oleiip/foodgram_frontend
+            sudo docker-compose stop $(sudo docker ps -a -q)
+            sudo docker-compose rm backend frontend
             rm .env
             touch .env
             echo SECRET_KEY='${{ secrets.SECRET_KEY }}' >> .env  
@@ -83,7 +84,6 @@ jobs:
             sudo docker-compose up -d --build
             sudo docker-compose exec -T backend python manage.py makemigrations
             sudo docker-compose exec -T backend python manage.py migrate
-            sudo docker-compose exec -T backend python manage.py load_ingridients
             sudo docker-compose exec -T backend python manage.py collectstatic --no-input
   
             
