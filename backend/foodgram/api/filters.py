@@ -1,7 +1,6 @@
 from distutils.util import strtobool
 
 from django_filters import rest_framework
-
 from recipes.models import Favorite, Recipe, ShoppingCart, Tag
 
 CHOICES_LIST = (
