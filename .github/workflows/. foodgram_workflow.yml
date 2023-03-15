@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   tests:
+    name: Test on flake8
     runs-on: ubuntu-latest
 
     steps:
