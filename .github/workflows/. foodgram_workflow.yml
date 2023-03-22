@@ -68,20 +68,22 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-            sudo docker pull oleiip/foodgram_backend
-            sudo docker pull oleiip/foodgram_frontend
-            sudo docker-compose stop $(sudo docker ps -a -q)
+            cd foodgram-project-react/infra
+            sudo docker-compose stop
             sudo docker-compose rm backend frontend
+            sudo docker pull oleiip/foodgram_backend:latest
+            sudo docker pull oleiip/foodgram_frontend:latest
             rm .env
             touch .env
-            echo SECRET_KEY='${{ secrets.SECRET_KEY }}' >> .env  
-            echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env 
-            echo DB_NAME=${{ secrets.DB_NAME }} >> .env 
-            echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env 
+            echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
+            echo DB_NAME=${{ secrets.DB_NAME }} >> .env
+            echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
             echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
             echo DB_HOST=${{ secrets.DB_HOST }} >> .env
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
-            sudo docker run --rm -d -p 5000:5000 oleiip/foodgram_backend
+            echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+            echo ALLOWED_HOSTS=${{ secrets.HOSTS }} >> .env
+            sudo docker-compose up -d
             sudo docker-compose exec -T backend python manage.py makemigrations
             sudo docker-compose exec -T backend python manage.py migrate
             sudo docker-compose exec -T backend python manage.py collectstatic --no-input
