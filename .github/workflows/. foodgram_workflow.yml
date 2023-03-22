@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   tests:
+    name: Test on flake8
     runs-on: ubuntu-latest
 
     steps:
@@ -45,7 +46,7 @@ jobs:
           context: ./backend/foodgram
           push: true
           tags: oleiip/foodgram_backend
-          file: foodgram/Dockerfile
+          file: backend/foodgram/Dockerfile
       
       - name: Push frontend to Docker Hub
         uses: docker/build-push-action@v2
@@ -67,20 +68,23 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-            sudo docker-compose stop
-            sudo docker-compose rm -f backend frontend
-            sudo docker image rm oleiip/foodgram_backend oleiip/foodgram_frontend
-            sudo docker-compose pull backend frontend 
+            sudo docker pull oleiip/foodgram_backend
+            sudo docker pull oleiip/foodgram_frontend
+            sudo docker-compose stop $(sudo docker ps -a -q)
+            sudo docker-compose rm backend frontend
             rm .env
             touch .env
-            echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
-            echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
-            echo DB_NAME=${{ secrets.DB_NAME }} >> .env
-            echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
+            echo SECRET_KEY='${{ secrets.SECRET_KEY }}' >> .env  
+            echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env 
+            echo DB_NAME=${{ secrets.DB_NAME }} >> .env 
+            echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env 
             echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
             echo DB_HOST=${{ secrets.DB_HOST }} >> .env
-            echo DB_PORT=${{ secrets.DB_PORT }} >> .env 
-            sudo docker-compose up -d
+            echo DB_PORT=${{ secrets.DB_PORT }} >> .env
+            sudo docker run --rm -d -p 5000:5000 oleiip/foodgram_backend
+            sudo docker-compose exec -T backend python manage.py makemigrations
+            sudo docker-compose exec -T backend python manage.py migrate
+            sudo docker-compose exec -T backend python manage.py collectstatic --no-input
   
             
   send_message:
