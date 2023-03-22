@@ -18,7 +18,7 @@ class Ingredient(models.Model):
     )
 
     class Meta:
-        verbose_name = 'ингредиент'
+        verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
 
         constraints = (
@@ -113,18 +113,18 @@ class Recipe(models.Model):
 
 
 class RecipeIngredients(models.Model):
-    recipe = models.ForeignKey(
-        Recipe,
-        on_delete=models.CASCADE,
-        verbose_name='Рецепт'
-    )
-    ingredient = models.ForeignKey(
-        Ingredient,
-        on_delete=models.PROTECT,
-        verbose_name='Ингредиент'
-    )
-    amount = models.PositiveSmallIntegerField(
-        validators=(MinValueValidator(1),),
+    recipe = models.ForeignKey(Recipe,
+                               on_delete=models.CASCADE,
+                               related_name='recipe_ingredients',
+                               verbose_name='Рецепт')
+    ingredient = models.ForeignKey(Ingredient,
+                                   on_delete=models.CASCADE,
+                                   related_name='recipe_ingredients',
+                                   verbose_name='Ингредиент')
+    amount = models.IntegerField(
+        validators=[
+            MinValueValidator(1, 'Количество не может быть меньше 1.'),
+        ],
         verbose_name='Количество'
     )
 

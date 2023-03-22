@@ -149,15 +149,15 @@ docker-compose up -d
 
 После успешного запуска контейнеров выполнить миграции:
 ```bash
-docker-compose exec web python manage.py makemigrations
+docker-compose exec backend python manage.py makemigrations
 ```
 ```bash
-docker-compose exec web python manage.py migrate
+docker-compose exec backend python manage.py migrate
 ```
 
 Собрать статику:
 ```bash
-docker-compose exec web python manage.py collectstatic --no-input 
+docker-compose exec backend python manage.py collectstatic --no-input 
 ```
 
 ---
@@ -165,12 +165,12 @@ docker-compose exec web python manage.py collectstatic --no-input
 
 Заполнить базу данных из файла с дампом:
 ```bash
-docker-compose exec web python manage.py loaddata data/ingredients.json
+docker-compose exec backend python manage.py loaddata data/ingredients.json
 
 ```
 Создать суперюзера:
 ```bash
-docker-compose exec web python manage.py createsuperuser
+docker-compose exec backend python manage.py createsuperuser
 ```
 
 ---
