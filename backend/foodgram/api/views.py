@@ -35,7 +35,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return RecipeCreateUpdateSerializer
 
         return RecipeSerializer
-    
+
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
@@ -193,8 +193,8 @@ class CustomUserViewSet(UserViewSet):
         author = get_object_or_404(User, pk=id)
         if user == author:
             raise exceptions.ValidationError(
-                    'Подписка на самого себя запрещена.'
-                )
+                'Подписка на самого себя запрещена.'
+            )
         if Subscription.objects.filter(user=user,
                                        author=author).exists():
             raise exceptions.ValidationError('Подписка уже оформлена.')
