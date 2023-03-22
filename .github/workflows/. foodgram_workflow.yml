@@ -69,8 +69,8 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         script: |
             cd foodgram-project-react/infra
-            sudo docker-compose stop
-            sudo docker-compose rm backend frontend
+            sudo docker compose stop
+            sudo docker compose rm backend frontend
             sudo docker pull oleiip/foodgram_backend:latest
             sudo docker pull oleiip/foodgram_frontend:latest
             rm .env
@@ -83,10 +83,10 @@ jobs:
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
             echo ALLOWED_HOSTS=${{ secrets.HOSTS }} >> .env
-            sudo docker-compose up -d
-            sudo docker-compose exec -T backend python manage.py makemigrations
-            sudo docker-compose exec -T backend python manage.py migrate
-            sudo docker-compose exec -T backend python manage.py collectstatic --no-input
+            sudo docker compose up -d
+            sudo docker compose exec -T backend python manage.py makemigrations
+            sudo docker compose exec -T backend python manage.py migrate
+            sudo docker compose exec -T backend python manage.py collectstatic --no-input
   
             
   send_message:
