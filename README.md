@@ -182,7 +182,7 @@ http://oleiip.sytes.net/admin/
 ```
 ## Документация для YaMDb доступна по адресу:
 ```
-http://oleiip.sytes.net/redoc/
+http://oleiip.sytes.net/api/docs/
 ```
 ---
 ## 7. Техническая информация <a id=7></a>
