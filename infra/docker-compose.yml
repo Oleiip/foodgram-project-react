@@ -5,7 +5,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - .env
+      - ./.env
+    restart: always
 
   backend:
     image: oleiip/foodgram_backend:latest
@@ -16,7 +17,7 @@ services:
     depends_on:
       - db
     env_file:
-      - .env
+      - ./.env
 
   frontend:
     image: oleiip/foodgram_frontend:latest
@@ -38,7 +39,8 @@ services:
       - media_value:/var/html/media/
     depends_on:
       - backend
-
+    restart: always
+ 
 volumes:
   postgres_data:
   static_value:
