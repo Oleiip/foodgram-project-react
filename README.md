@@ -1,5 +1,5 @@
 # API для проекта YaMDB в контейнере Docker
-![Foodgram project workflow](https://github.com/Oleiip/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
+![fodgram workflow](https://github.com/Bazilit/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
 ![Python](https://img.shields.io/badge/Python-3.7.0-blue?style=for-the-badge&logo=python&logoColor=yellow)
 ![Django](https://img.shields.io/badge/Django-2.2.19-red?style=for-the-badge&logo=django&logoColor=blue)
 ![Postgres](https://img.shields.io/badge/Postgres-13.0-blueviolet?style=for-the-badge&logo=postgresql&logoColor=yellow)
