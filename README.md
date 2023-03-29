@@ -1,14 +1,10 @@
 # API для проекта YaMDB в контейнере Docker
-[![API for YaMDB project workflow](https://github.com/Oleiip/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?branch=main)](https://github.com/Oleiip/yamdb_final/actions/workflows/yamdb_workflow.yml)
-
-[![Python](https://img.shields.io/badge/-Python-464646?style=flat-square&logo=Python)](https://www.python.org/)
-[![Nginx](https://img.shields.io/badge/-NGINX-464646?style=flat-square&logo=NGINX)](https://nginx.org/ru/)
-[![gunicorn](https://img.shields.io/badge/-gunicorn-464646?style=flat-square&logo=gunicorn)](https://gunicorn.org/)
-[![docker](https://img.shields.io/badge/-Docker-464646?style=flat-square&logo=docker)](https://www.docker.com/)
-[![GitHub%20Actions](https://img.shields.io/badge/-GitHub%20Actions-464646?style=flat-square&logo=GitHub%20actions)](https://github.com/features/actions)
-[![Yandex.Cloud](https://img.shields.io/badge/-Yandex.Cloud-464646?style=flat-square&logo=Yandex.Cloud)](https://cloud.yandex.ru/)
-[![DjangoREST](https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray)](https://www.django-rest-framework.org/)
-[![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+![foodgram-project-react workflow](https://github.com/Oleiip/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
+![Python](https://img.shields.io/badge/Python-3.7.0-blue?style=for-the-badge&logo=python&logoColor=yellow)
+![Django](https://img.shields.io/badge/Django-2.2.19-red?style=for-the-badge&logo=django&logoColor=blue)
+![Postgres](https://img.shields.io/badge/Postgres-13.0-blueviolet?style=for-the-badge&logo=postgresql&logoColor=yellow)
+![Nginx](https://img.shields.io/badge/NGINX-1.19.3-orange?style=for-the-badge&logo=nginx&logoColor=green)
+![Gunicorn](https://img.shields.io/badge/Gunicorn-20.1.0-inactive?style=for-the-badge&logo=gunicorn&logoColor=white)
 
 # "Продуктовый помощник" (Foodgram)
 
@@ -110,8 +106,9 @@ SECRET_KEY='Здесь указать секретный ключ'
 
 Перед запуском необходимо склонировать проект:
 ```bash
-HTTPS: git clone https://github.com/Oleiip/yamdb_final.git
-SSH: git clone git@github.com:Oleiip/yamdb_final.git
+HTTPS: https://github.com/Oleiip/foodgram-project-react.git
+
+SSH: git clone git@github.com:Oleiip/foodgram-project-react.git
 ```
 
 Cоздать и активировать виртуальное окружение:
