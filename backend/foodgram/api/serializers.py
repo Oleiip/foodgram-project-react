@@ -2,7 +2,7 @@ import base64
 
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.shortcuts import get_object_or_404
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from recipes.models import Ingredient, Recipe, RecipeIngredients, Tag
@@ -79,6 +79,10 @@ class CreateUpdateRecipeIngredientsSerializer(serializers.ModelSerializer):
             MinValueValidator(
                 1,
                 message='Количество ингредиента должно быть 1 или более.'
+            ),
+            MaxValueValidator(
+                25,
+                message='Количество ингредиента должно быть не более 25.'
             ),
         )
     )
@@ -172,7 +176,9 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
         if data['cooking_time'] <= 0:
             raise serializers.ValidationError('Время приготовления не может '
                                               'быть менее минуты.')
-
+        if data['cooking_time'] > 600:
+            raise serializers.ValidationError('Время приготовления не может '
+                                              'быть более 10 часов.')
         ingredients_list = []
         for ingredient in data['recipe_ingredients']:
             if ingredient['amount'] <= 0:

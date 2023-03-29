@@ -4,6 +4,7 @@ from recipes.models import Ingredient, Recipe, Tag
 
 class RecipeIngredientsInLine(admin.TabularInline):
     model = Recipe.ingredients.through
+    min_num = 1
     extra = 1
 
 
