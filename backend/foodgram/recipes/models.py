@@ -18,6 +18,7 @@ class Ingredient(models.Model):
     )
 
     class Meta:
+        ordering = ('-id',)
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
 
@@ -51,6 +52,7 @@ class Tag(models.Model):
     )
 
     class Meta:
+        ordering = ('-id',)
         verbose_name = 'тег'
         verbose_name_plural = 'Теги'
 
@@ -129,6 +131,7 @@ class RecipeIngredients(models.Model):
     )
 
     class Meta:
+        ordering = ('-id',)
         verbose_name = 'ингредиенты'
         verbose_name_plural = 'Ингредиенты'
 
@@ -149,6 +152,7 @@ class RecipeTags(models.Model):
     )
 
     class Meta:
+        ordering = ('-id',)
         verbose_name = 'теги'
         verbose_name_plural = 'Теги'
 
@@ -171,6 +175,7 @@ class Favorite(models.Model):
     )
 
     class Meta:
+        ordering = ('-id',)
         verbose_name = 'избранное'
         verbose_name_plural = 'Избранное'
 
@@ -200,6 +205,7 @@ class ShoppingCart(models.Model):
     )
 
     class Meta:
+        ordering = ('-id',)
         verbose_name = 'список покупок'
         verbose_name_plural = 'Список покупок'
 
