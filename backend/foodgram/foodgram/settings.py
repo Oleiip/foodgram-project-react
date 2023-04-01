@@ -6,7 +6,7 @@ load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = SECRET_KEY = os.getenv('SECRET_KEY', default='django-insecure-0p68175k6pudi#ljeatf=8mx_ro7f*5@w#4xosu6t8kp-u@1sl')
+SECRET_KEY = os.getenv('SECRET_KEY', default='django-insecure-0p68175k6pudi#ljeatf=8mx_ro7f*5@w#4xosu6t8kp-u@1sl')
 
 DEBUG = os.getenv('DEBUG', default=False)
 
@@ -79,8 +79,6 @@ else:
             'PORT': os.getenv('DB_PORT', default='5432')
         }
     }
-
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
