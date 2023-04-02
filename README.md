@@ -34,57 +34,21 @@
 Для запуска необходимо установить Docker и Docker Compose.  
 Подробнее об установке на других платформах можно узнать на [официальном сайте](https://docs.docker.com/engine/install/).
 
-Для начала необходимо скачать и выполнить официальный скрипт:
-```bash
-apt install curl
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
+* Выполните вход по ssh на удаленный сервер
+
+* Выполните команды:
+```
+sudo apt update
+sudo apt install docker.io
+sudo apt install docker-compose
 ```
 
-При необходимости удалить старые версии Docker:
-```bash
-apt remove docker docker-engine docker.io containerd runc 
+* Локально отредактируйте файл infra/nginx.conf и в строке server_name впишите свой IP
+* Скопируйте файлы docker-compose.yml и nginx.conf из директории infra на сервер:
 ```
-
-Установить пакеты для работы через протокол https:
-```bash
-apt update
+scp docker-compose.yml <username>@<host>:/home/<username>/docker-compose.yml
+scp nginx.conf <username>@<host>:/home/<username>/nginx.conf
 ```
-```bash
-apt install \
-  apt-transport-https \
-  ca-certificates \
-  curl \
-  gnupg-agent \
-  software-properties-common -y 
-```
-
-Добавить ключ GPG для подтверждения подлинности в процессе установки:
-```bash
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-```
-
-Добавить репозиторий Docker в пакеты apt и обновить индекс пакетов:
-```bash
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" 
-```
-```bash
-apt update
-```
-
-Установить Docker(CE) и Docker Compose:
-```bash
-apt install docker-ce docker-compose -y
-```
-
-Проверить что  Docker работает можно командой:
-```bash
-systemctl status docker
-```
-
-Подробнее об установке можно узнать по [ссылке](https://docs.docker.com/engine/install/ubuntu/).
-
----
 ## 3. Переменные окружения <a id=3></a>
 
 Проект использует базу данных PostgreSQL.  
@@ -104,42 +68,7 @@ SECRET_KEY='Здесь указать секретный ключ'
 ---
 ## 4. Команды для запуска <a id=4></a>
 
-Перед запуском необходимо склонировать проект:
-```bash
-HTTPS: https://github.com/Oleiip/foodgram-project-react.git
-
-SSH: git clone git@github.com:Oleiip/foodgram-project-react.git
-```
-
-Cоздать и активировать виртуальное окружение:
-```bash
-python -m venv venv
-```
-```bash
-Linux: source venv/bin/activate
-Windows: source venv/Scripts/activate
-```
-
-И установить зависимости из файла requirements.txt:
-```bash
-python3 -m pip install --upgrade pip
-```
-```bash
-pip install -r requirements.txt
-```
-Далее необходимо собрать образы для фронтенда и бэкенда.  
-Из папки "./backend/foodgram/" выполнить команду:
-```bash
-docker build -t oleiip/foodgram_backend .
-```
-
-Из папки "./frontend/" выполнить команду:
-```bash
-docker build -t oleiip/foodgram_frontend .
-```
-
-После создания образов можно создавать и запускать контейнеры.
-Из папки "./infra/" выполнить команду создания и запуска контейнеров:
+Запуск контейнеров:
 ```bash
 docker-compose up -d
 ```
