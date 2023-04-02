@@ -236,7 +236,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
                     ingredient=get_object_or_404(
                         Ingredient, pk=ingredient['id']), recipe=recipe,
                     )
-            )
+                )
         RecipeIngredients.objects.bulk_create(ingredients_list)
 
     def create(self, validated_data):
